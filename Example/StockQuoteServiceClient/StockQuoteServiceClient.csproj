@@ -90,7 +90,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OS.ReactiveDuplexChannel\OS.ReactiveDuplexChannel.csproj">
+    <ProjectReference Include="..\..\OS.ReactiveDuplexChannel\OS.ReactiveDuplexChannel.csproj">
       <Project>{33ee12e1-e9a8-4839-9b50-0305d2de143a}</Project>
       <Name>OS.ReactiveDuplexChannel</Name>
     </ProjectReference>

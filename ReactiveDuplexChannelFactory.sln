@@ -9,10 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{AC5F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockQuoteService", "Example\StockQuoteService\StockQuoteService.csproj", "{66474578-1205-4CC2-9A0D-BC1D5CC4DABD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockQuoteServiceClient", "StockQuoteServiceClient\StockQuoteServiceClient.csproj", "{EE5BF7F3-7658-46C1-9923-174876DB0BF4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{66474578-1205-4CC2-9A0D-BC1D5CC4DABD} = {66474578-1205-4CC2-9A0D-BC1D5CC4DABD}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockQuoteServiceClient", "Example\StockQuoteServiceClient\StockQuoteServiceClient.csproj", "{EE5BF7F3-7658-46C1-9923-174876DB0BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
