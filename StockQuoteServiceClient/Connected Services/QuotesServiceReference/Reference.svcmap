@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="32abda02-f5f5-48d8-9a61-a91dc6a70bdf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3201/StockQuoteService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StockQuoteService.wsdl" MetadataType="Wsdl" ID="fc136274-138d-4fca-ac4d-fc25f0b149d9" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?wsdl" />
+    <MetadataFile FileName="StockQuoteService.xsd" MetadataType="Schema" ID="c644aa0d-f41c-45a9-8722-6dd90a7b8509" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="StockQuoteService1.xsd" MetadataType="Schema" ID="71ca0810-7979-46e2-90b9-edfc08ac4083" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="StockQuoteService2.xsd" MetadataType="Schema" ID="343879d7-33aa-4464-abfc-17cb869779c2" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="StockQuoteService.disco" MetadataType="Disco" ID="6b2780e2-6579-4d13-8fb0-9a2ee57fc8bb" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

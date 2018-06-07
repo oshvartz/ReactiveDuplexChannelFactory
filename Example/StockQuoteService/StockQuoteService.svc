@@ -1,0 +1,2 @@
+﻿<!-- StockQuoteService.svc -->  
+<%@ ServiceHost Language="C#" Debug="true" Service="StockQuoteService.StockQuoteService" CodeBehind="StockQuoteService.svc.cs" %>
