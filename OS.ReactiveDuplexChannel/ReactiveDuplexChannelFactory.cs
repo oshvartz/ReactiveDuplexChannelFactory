@@ -10,35 +10,47 @@ namespace OS.ReactiveDuplexChannel
 where TContract : class
 where TCallbackContract : class
   {
-    private static readonly ProxyGenerator _generator = new ProxyGenerator();
-    private ReactiveInteceptor _reactiveInteceptor;
+    // ReSharper disable once StaticMemberInGenericType
+    private static readonly ProxyGenerator Generator = new ProxyGenerator();
+    private readonly ReactiveInteceptor _reactiveInteceptor;
 
     public ReactiveDuplexChannelFactory(Binding binding, string remoteAddress)
-      : base(new InstanceContext(_generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor())), binding, remoteAddress)
+      : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor())), binding, remoteAddress)
     {
       _reactiveInteceptor = ExtractTheInterceptor();
-    }
-
-
-    //kongfu
-    private ReactiveInteceptor ExtractTheInterceptor()
-    {
-      var cbi = this.GetType().GetProperty("CallbackInstance", BindingFlags.Instance | BindingFlags.NonPublic);
-      var ic = (InstanceContext) cbi.GetValue(this);
-
-      var memb = ic.GetType().GetProperty("UserObject", BindingFlags.Instance | BindingFlags.NonPublic);
-
-      var obk = memb.GetValue(ic);
-
-      var interc = obk.GetType().GetField("__interceptors", BindingFlags.Instance | BindingFlags.NonPublic);
-      var arr = interc.GetValue(obk) as IInterceptor[];
-
-       return (ReactiveInteceptor) arr[0];
     }
 
     public IObservable<T> AsObservable<T>()
     {
       return _reactiveInteceptor.AddListener<T>();
     }
+
+
+    //kongfu
+    private ReactiveInteceptor ExtractTheInterceptor()
+    {
+      try
+      {
+        var callbackInstancePropInfo = GetType().GetProperty("CallbackInstance",
+          BindingFlags.Instance | BindingFlags.NonPublic);
+        // ReSharper disable once PossibleNullReferenceException
+        var instanceContext = (InstanceContext) callbackInstancePropInfo.GetValue(this);
+
+        var userObjectMemberInfo = instanceContext.GetType().GetProperty("UserObject", BindingFlags.Instance | BindingFlags.NonPublic);
+        // ReSharper disable once PossibleNullReferenceException
+        var userObject = userObjectMemberInfo.GetValue(instanceContext);
+
+        var interceptorsFieldInfo = userObject.GetType().GetField("__interceptors", BindingFlags.Instance | BindingFlags.NonPublic);
+        // ReSharper disable once PossibleNullReferenceException
+        var interceptors = interceptorsFieldInfo.GetValue(userObject) as IInterceptor[];
+        // ReSharper disable once PossibleNullReferenceException
+        return (ReactiveInteceptor)interceptors[0];
+      }
+      catch (Exception ex)
+      {
+        throw new NotSupportedException("fail to Extract The Interceptor - something was change", ex);
+      }
+    }
+
   }
 }
