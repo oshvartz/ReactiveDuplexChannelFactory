@@ -12,10 +12,10 @@ where TCallbackContract : class
   {
     // ReSharper disable once StaticMemberInGenericType
     private static readonly ProxyGenerator Generator = new ProxyGenerator();
-    private readonly ReactiveInteceptor _reactiveInteceptor;
+    private readonly ReactiveInteceptor<TCallbackContract> _reactiveInteceptor;
 
     public ReactiveDuplexChannelFactory(Binding binding, string remoteAddress)
-      : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor())), binding, remoteAddress)
+      : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor<TCallbackContract>())), binding, remoteAddress)
     {
       _reactiveInteceptor = ExtractTheInterceptor();
     }
@@ -27,7 +27,7 @@ where TCallbackContract : class
 
 
     //kongfu
-    private ReactiveInteceptor ExtractTheInterceptor()
+    private ReactiveInteceptor<TCallbackContract> ExtractTheInterceptor()
     {
       try
       {
@@ -44,7 +44,7 @@ where TCallbackContract : class
         // ReSharper disable once PossibleNullReferenceException
         var interceptors = interceptorsFieldInfo.GetValue(userObject) as IInterceptor[];
         // ReSharper disable once PossibleNullReferenceException
-        return (ReactiveInteceptor)interceptors[0];
+        return (ReactiveInteceptor<TCallbackContract>)interceptors[0];
       }
       catch (Exception ex)
       {

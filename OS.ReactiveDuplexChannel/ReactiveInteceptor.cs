@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Subjects;
 using System.Reflection;
+using System.ServiceModel;
 using Castle.DynamicProxy;
 
 namespace OS.ReactiveDuplexChannel
 {
-  internal class ReactiveInteceptor : IInterceptor
+  internal class ReactiveInteceptor<TCallbackContract> : IInterceptor
   {
     private readonly ConcurrentDictionary<Type, OnNextInvoker> _subjects = new ConcurrentDictionary<Type, OnNextInvoker>();
+    private readonly List<Type> _supportedListenerTypes;
+
+    internal ReactiveInteceptor()
+    {
+      _supportedListenerTypes = ExtractCallbackTypes(typeof(TCallbackContract));
+    }
+
+    private List<Type> ExtractCallbackTypes(Type callbackContractType)
+    {
+      return callbackContractType.GetMethods()
+        .Where(mi => mi.GetParameters().Length == 1 && mi.GetCustomAttribute<OperationContractAttribute>() != null)
+        .Select(mi => mi.GetParameters()[0].ParameterType).ToList();
+    }
 
     public void Intercept(IInvocation invocation)
     {
@@ -36,7 +52,11 @@ namespace OS.ReactiveDuplexChannel
 
     private void ValidateTypeInCallback<T>()
     {
-      // throw new NotImplementedException();
+      if (!_supportedListenerTypes.Contains(typeof(T)))
+      {
+        throw new NotSupportedException(
+          $"the callback contract:{typeof(TCallbackContract)} not suppirting the type:{typeof(T)}");
+      }
     }
 
     private class OnNextInvoker
