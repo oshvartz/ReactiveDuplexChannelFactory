@@ -7,18 +7,39 @@ using Castle.DynamicProxy;
 namespace OS.ReactiveDuplexChannel
 {
   public class ReactiveDuplexChannelFactory<TContract, TCallbackContract> : DuplexChannelFactory<TContract>
-where TContract : class
-where TCallbackContract : class
+      where TContract : class
+      where TCallbackContract : class
   {
     // ReSharper disable once StaticMemberInGenericType
     private static readonly ProxyGenerator Generator = new ProxyGenerator();
     private readonly ReactiveInteceptor<TCallbackContract> _reactiveInteceptor;
+
+    #region Ctors
+    public ReactiveDuplexChannelFactory(Binding binding)
+    : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor<TCallbackContract>())), binding)
+    {
+      _reactiveInteceptor = ExtractTheInterceptor();
+    }
+
+    public ReactiveDuplexChannelFactory(string endpointConfigurationName)
+      : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor<TCallbackContract>())), endpointConfigurationName: endpointConfigurationName)
+    {
+      _reactiveInteceptor = ExtractTheInterceptor();
+    }
+
+
+    public ReactiveDuplexChannelFactory(string endpointConfigurationName, EndpointAddress remoteAddress)
+      : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor<TCallbackContract>())), endpointConfigurationName, remoteAddress)
+    {
+      _reactiveInteceptor = ExtractTheInterceptor();
+    }
 
     public ReactiveDuplexChannelFactory(Binding binding, string remoteAddress)
       : base(new InstanceContext(Generator.CreateInterfaceProxyWithoutTarget<TCallbackContract>(new ReactiveInteceptor<TCallbackContract>())), binding, remoteAddress)
     {
       _reactiveInteceptor = ExtractTheInterceptor();
     }
+    #endregion
 
     public IObservable<T> AsObservable<T>()
     {
@@ -34,7 +55,7 @@ where TCallbackContract : class
         var callbackInstancePropInfo = GetType().GetProperty("CallbackInstance",
           BindingFlags.Instance | BindingFlags.NonPublic);
         // ReSharper disable once PossibleNullReferenceException
-        var instanceContext = (InstanceContext) callbackInstancePropInfo.GetValue(this);
+        var instanceContext = (InstanceContext)callbackInstancePropInfo.GetValue(this);
 
         var userObjectMemberInfo = instanceContext.GetType().GetProperty("UserObject", BindingFlags.Instance | BindingFlags.NonPublic);
         // ReSharper disable once PossibleNullReferenceException
