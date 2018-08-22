@@ -5,6 +5,9 @@ This is a .NET Standard project - part of learning the process of creating mulit
 
 Usage is very simple just replace DuplexChannelFactory to ReactiveDuplexChannelFactory
 
+# Nuget
+[from MyGet](https://www.myget.org/feed/oshvartz/package/nuget/OS.ReactiveDuplexChannel)
+
 example:
 
  ```C#
