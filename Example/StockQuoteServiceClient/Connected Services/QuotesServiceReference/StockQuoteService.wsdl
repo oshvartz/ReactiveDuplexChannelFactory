@@ -18,12 +18,18 @@
   <wsdl:message name="IStockQuoteService_StartSendingQuotes_InputMessage">
     <wsdl:part name="parameters" element="tns:StartSendingQuotes" />
   </wsdl:message>
+  <wsdl:message name="IStockQuoteService_StopSendingQuotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopSendingQuotes" />
+  </wsdl:message>
   <wsdl:message name="IStockQuoteService_SendQuote_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SendQuote" />
   </wsdl:message>
   <wsdl:portType name="IStockQuoteService">
     <wsdl:operation name="StartSendingQuotes">
       <wsdl:input wsaw:Action="http://tempuri.org/IStockQuoteService/StartSendingQuotes" message="tns:IStockQuoteService_StartSendingQuotes_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopSendingQuotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStockQuoteService/StopSendingQuotes" message="tns:IStockQuoteService_StopSendingQuotes_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendQuote">
       <wsdl:output wsaw:Action="http://tempuri.org/IStockQuoteService/SendQuote" message="tns:IStockQuoteService_SendQuote_OutputCallbackMessage" />
@@ -34,6 +40,12 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/websocket" />
     <wsdl:operation name="StartSendingQuotes">
       <soap12:operation soapAction="http://tempuri.org/IStockQuoteService/StartSendingQuotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="StopSendingQuotes">
+      <soap12:operation soapAction="http://tempuri.org/IStockQuoteService/StopSendingQuotes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

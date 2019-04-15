@@ -4,26 +4,29 @@ using System.Threading.Tasks;
 
 namespace StockQuoteService
 {
-  [ServiceContract(CallbackContract = typeof(IStockQuoteCallback))]
-  public interface IStockQuoteService
-  {
-    [OperationContract(IsOneWay = true)]
-    Task StartSendingQuotes();
-  }
+    [ServiceContract(CallbackContract = typeof(IStockQuoteCallback))]
+    public interface IStockQuoteService
+    {
+        [OperationContract(IsOneWay = true)]
+        Task StartSendingQuotes();
 
-  [ServiceContract]
-  public interface IStockQuoteCallback
-  {
-    [OperationContract(IsOneWay = true)]
-    Task SendQuote(Quote quote);
-  }
+        [OperationContract(IsOneWay = true)]
+        Task StopSendingQuotes();
+    }
 
-  [DataContract]
-  public class Quote
-  {
-    [DataMember]
-    public string Code { get; set; }
-    [DataMember]
-    public double Price { get; set; }
-  }
+    [ServiceContract]
+    public interface IStockQuoteCallback
+    {
+        [OperationContract(IsOneWay = true)]
+        Task SendQuote(Quote quote);
+    }
+
+    [DataContract]
+    public class Quote
+    {
+        [DataMember]
+        public string Code { get; set; }
+        [DataMember]
+        public double Price { get; set; }
+    }
 }

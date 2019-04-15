@@ -2,25 +2,39 @@
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace StockQuoteService
 {
-  public class StockQuoteService : IStockQuoteService
-  {
-    public async Task StartSendingQuotes()
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,InstanceContextMode = InstanceContextMode.PerSession)]
+    public class StockQuoteService : IStockQuoteService
     {
-      var callback = OperationContext.Current.GetCallbackChannel<IStockQuoteCallback>();
-      var random = new Random();
-      double price = 29.00;
-      price += random.NextDouble();
+        private readonly CancellationTokenSource _cancellationTokenSource;
+        public StockQuoteService()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+        }
 
-      while (((IChannel)callback).State == CommunicationState.Opened)
-      {
-        await callback.SendQuote(new Quote {Code = "MSFT",Price  = price});
-        price += random.NextDouble();
-        await Task.Delay(50);
-      }
+        public async Task StartSendingQuotes()
+        {
+            var callback = OperationContext.Current.GetCallbackChannel<IStockQuoteCallback>();
+            var random = new Random();
+            double price = 29.00;
+            price += random.NextDouble();
+
+            while (((IChannel)callback).State == CommunicationState.Opened && !_cancellationTokenSource.IsCancellationRequested)
+            {
+                await callback.SendQuote(new Quote { Code = "MSFT", Price = price });
+                price += random.NextDouble();
+                await Task.Delay(1);
+            }
+        }
+
+        public Task StopSendingQuotes()
+        {
+            _cancellationTokenSource.Cancel();
+            return Task.CompletedTask;
+        }
     }
-  }
 }

@@ -83,6 +83,12 @@ namespace StockQuoteServiceClient.QuotesServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IStockQuoteService/StartSendingQuotes")]
         System.Threading.Tasks.Task StartSendingQuotesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IStockQuoteService/StopSendingQuotes")]
+        void StopSendingQuotes();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IStockQuoteService/StopSendingQuotes")]
+        System.Threading.Tasks.Task StopSendingQuotesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -126,6 +132,14 @@ namespace StockQuoteServiceClient.QuotesServiceReference {
         
         public System.Threading.Tasks.Task StartSendingQuotesAsync() {
             return base.Channel.StartSendingQuotesAsync();
+        }
+        
+        public void StopSendingQuotes() {
+            base.Channel.StopSendingQuotes();
+        }
+        
+        public System.Threading.Tasks.Task StopSendingQuotesAsync() {
+            return base.Channel.StopSendingQuotesAsync();
         }
     }
 }

@@ -1,15 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OS.ReactiveDuplexChannel", "OS.ReactiveDuplexChannel\OS.ReactiveDuplexChannel.csproj", "{33EE12E1-E9A8-4839-9B50-0305D2DE143A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OS.ReactiveDuplexChannel", "OS.ReactiveDuplexChannel\OS.ReactiveDuplexChannel.csproj", "{33EE12E1-E9A8-4839-9B50-0305D2DE143A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{AC5FB29C-242D-4087-9F09-2F5E286BB3B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockQuoteService", "Example\StockQuoteService\StockQuoteService.csproj", "{66474578-1205-4CC2-9A0D-BC1D5CC4DABD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockQuoteServiceClient", "Example\StockQuoteServiceClient\StockQuoteServiceClient.csproj", "{EE5BF7F3-7658-46C1-9923-174876DB0BF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{66474578-1205-4CC2-9A0D-BC1D5CC4DABD} = {66474578-1205-4CC2-9A0D-BC1D5CC4DABD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

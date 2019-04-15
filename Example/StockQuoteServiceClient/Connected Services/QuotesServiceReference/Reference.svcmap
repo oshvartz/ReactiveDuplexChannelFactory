@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="32abda02-f5f5-48d8-9a61-a91dc6a70bdf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8b8c95dc-b7a1-4b37-9953-13b5f79ee28f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:3201/StockQuoteService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="StockQuoteService.wsdl" MetadataType="Wsdl" ID="fc136274-138d-4fca-ac4d-fc25f0b149d9" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?wsdl" />
-    <MetadataFile FileName="StockQuoteService.xsd" MetadataType="Schema" ID="c644aa0d-f41c-45a9-8722-6dd90a7b8509" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd0" />
-    <MetadataFile FileName="StockQuoteService1.xsd" MetadataType="Schema" ID="71ca0810-7979-46e2-90b9-edfc08ac4083" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd2" />
-    <MetadataFile FileName="StockQuoteService2.xsd" MetadataType="Schema" ID="343879d7-33aa-4464-abfc-17cb869779c2" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd1" />
-    <MetadataFile FileName="StockQuoteService.disco" MetadataType="Disco" ID="6b2780e2-6579-4d13-8fb0-9a2ee57fc8bb" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?disco" />
+    <MetadataFile FileName="StockQuoteService.wsdl" MetadataType="Wsdl" ID="9b3f7063-cba2-422f-869d-bae1b5910863" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?wsdl" />
+    <MetadataFile FileName="StockQuoteService.xsd" MetadataType="Schema" ID="3a31e01d-c03a-441d-bd56-f7676f2846eb" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="StockQuoteService1.xsd" MetadataType="Schema" ID="317be5ee-6c92-4178-9725-d7d674ae958c" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="StockQuoteService2.xsd" MetadataType="Schema" ID="3ba46cda-db24-4d09-b0ef-208b65c6016a" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="StockQuoteService.disco" MetadataType="Disco" ID="5d5a10ec-034f-4bb8-857f-986f60b9fab1" SourceId="1" SourceUrl="http://localhost:3201/StockQuoteService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
